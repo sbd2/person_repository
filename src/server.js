@@ -4,10 +4,6 @@ var bodyParser = require('body-parser');
 var db = require('./database');
 var model = require('./model');
 
-const CONTENT_TYPE = 'Content-Type';
-const TEXT_HTML = 'text/html';
-const APPLICATION_JSON = 'application/json';
-
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
