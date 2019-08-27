@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var db = require('./database');
+var db = require('./database').db;
 var model = require('./model');
 
 var app = express();
@@ -12,12 +12,13 @@ app.get('/', function(request, response) {
 });
 
 app.get('/person', function(request, response) {
-    const Person = db.db.model(model.modelName, model.model);
-    Person.find
+    const Person = db.model(model.MODEL_NAME, model.object);
+    var result = Person.find({});
+    response.send(result);
 });
 
 app.post('/person', function(request, response) {
-    const Person = db.db.model(model.modelName, model.model);
+    const Person = db.model(model.MODEL_NAME, model.object);
     const data = new Person;
     
     data.name = request.body.name;
